@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: messaging-pulsar
+  labels:
+    app: messaging-pulsar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: messaging-pulsar
+  template:
+    metadata:
+      labels:
+        app: messaging-pulsar
+    spec:
+      containers:
+      - name: messaging-pulsar
+        image: khmndr/messaging-pulsar:test03  
+        ports:
+        - containerPort: 8080
+        resources:  #complete this ... 
+          limit: 
+          usage: 
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: messaging-pulsar-service
+spec:
+  selector:
+    app: messaging-pulsar
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+
