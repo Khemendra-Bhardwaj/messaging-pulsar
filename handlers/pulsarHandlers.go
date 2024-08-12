@@ -90,6 +90,7 @@ func SendMessage(w http.ResponseWriter, r *http.Request) {
 	defer Client.Close()
 	/*End Creating Pular Client*/
 
+	// TODO : check if user exist and SUBSRIBED or created that topic
 	if !userExists(userSubscriptions, user) {
 		http.Error(w, "User Not Found !", http.StatusBadRequest)
 		return
